@@ -24,6 +24,21 @@ exports.start = function (options) {
     // On some Windows machines, sox is installed using the "sox" binary
     // instead of "rec"
     case 'sox':
+    cmd = options.recordProgram
+      cmdArgs = [
+        '-d',                     // allow continuous microphone recording
+        '-q',                     // show no progress
+        '-r', options.sampleRate, // sample rate
+        '-c', '1',                // channels
+        '-e', 'signed-integer',   // sample encoding
+        '-b', '16',               // precision (bits)
+        '-t', 'wav',              // audio type
+        '-',                      // pipe
+            // end on silence
+        'silence', '1', '0.1', options.threshold + '%',
+        '1', '1.0', options.threshold + '%'
+      ]
+      break
     case 'rec':
     default:
       cmd = options.recordProgram
