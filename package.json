@@ -3,7 +3,9 @@
   "version": "0.2.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "tree-kill": "^1.1.0"
+  },
   "devDependencies": {},
   "scripts": {},
   "keywords": [

@@ -1,6 +1,7 @@
 'use strict'
 
 var spawn = require('child_process').spawn
+var kill = require('tree-kill')
 
 var cp // Recording process
 
@@ -102,6 +103,7 @@ exports.stop = function () {
     return false
   }
 
-  cp.kill() // Exit the spawned process, exit gracefully
+  kill(cp.pid, 'SIGKILL')
+
   return cp
 }
